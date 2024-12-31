@@ -1,0 +1,199 @@
+{
+	"info": {
+		"_postman_id": "19da0408-917e-42c7-b591-b59369bdc88a",
+		"name": "Exam Administration API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4652666"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Admin User\",\n  \"email\": \"admin@example.com\",\n  \"password\": \"admin123\",\n  \"role\": \"Admin\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrlAuth}}/register",
+					"host": [
+						"{{baseUrlAuth}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login (Admin)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"admin123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrlAuth}}/login",
+					"host": [
+						"{{baseUrlAuth}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login (User)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzNmZWNmN2VmMThlYTQ1MzFlZDY1MyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTczNTY1NzgxMCwiZXhwIjoxNzM1NjYxNDEwfQ.zGXeRoytg2v-WyM4nRBAkPLZZ2bZsV_UlLbaIby21co",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"student1@example.com\",\n  \"password\": \"student123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrlAuth}}/login",
+					"host": [
+						"{{baseUrlAuth}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Exam (Admin)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzNmZWNmN2VmMThlYTQ1MzFlZDY1MyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTczNTY1NzgxMCwiZXhwIjoxNzM1NjYxNDEwfQ.zGXeRoytg2v-WyM4nRBAkPLZZ2bZsV_UlLbaIby21co",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwtToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"Sample Exam 1\",\n  \"questions\": [\n    {\n      \"questionText\": \"What is 2 + 2?\",\n      \"options\": [\"Option A\", \"Option B\", \"Option C\", \"Option D\"],\n      \"correctAnswer\": \"Option A\"\n    },\n    {\n      \"questionText\": \"What is the capital of France?\",\n      \"options\": [\"Paris\", \"London\", \"Berlin\", \"Madrid\"],\n      \"correctAnswer\": \"Paris\"\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrlAdmin}}/exams",
+					"host": [
+						"{{baseUrlAdmin}}"
+					],
+					"path": [
+						"exams"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get exam",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzNmZWNmN2VmMThlYTQ1MzFlZDY1MyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTczNTY1NzgxMCwiZXhwIjoxNzM1NjYxNDEwfQ.zGXeRoytg2v-WyM4nRBAkPLZZ2bZsV_UlLbaIby21co",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrlAdmin}}/exams",
+					"host": [
+						"{{baseUrlAdmin}}"
+					],
+					"path": [
+						"exams"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Submit Exam",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzNmZWNmN2VmMThlYTQ1MzFlZDY1NSIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzM1NjU4NzYyLCJleHAiOjE3MzU2NjIzNjJ9.7cuaKU0T9WerCCmPBMY8uEmnZklLLKkYO7KRuNRCGvw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"answers\": [\n    {\n\t\t\t\"selectedAnswer\" : \"Option A\",\n\t\t\t\"questionId\" :\"6773fecf7ef18ea4531ed65a\"\n\t\t},\n\t\t{\n\t\t\t\"selectedAnswer\" : \"Option A\",\n\t\t\t\"questionId\" :\"6773fecf7ef18ea4531ed65b\"\n\t\t},\n\t\t{\n\t\t\t\"selectedAnswer\" : \"Option A\",\n\t\t\t\"questionId\" :\"6773fecf7ef18ea4531ed65c\"\n\t\t},\n\t\t{\n\t\t\t\"selectedAnswer\" : \"Option A\",\n\t\t\t\"questionId\" :\"6773fecf7ef18ea4531ed65d\"\n\t\t},\n\t\t{\n\t\t\t\"selectedAnswer\" : \"Option A\",\n\t\t\t\"questionId\" :\"6773fecf7ef18ea4531ed65e\"\n\t\t}\n  ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrlStudent}}/exams/6773fecf7ef18ea4531ed659/submit",
+					"host": [
+						"{{baseUrlStudent}}"
+					],
+					"path": [
+						"exams",
+						"6773fecf7ef18ea4531ed659",
+						"submit"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
